@@ -17,6 +17,10 @@ session = EventsAPISession(token)
 # python SDK yet
 eventType = relay.get(D.type)
 dedup_key = relay.get(D.dedup_key)
+payload = None
+custom_details = relay.get(D.custom_details)
+images = None
+links = relay.get(D.links)
 
 if eventType is None:
     exit("A type is required for sending events, but none was set")
@@ -30,7 +34,7 @@ elif eventType == "trigger":
         exit("A source is required for event type trigger, but none was set")
     if severity is None:
         exit("A severity is required for event type trigger, but none was set")
-    response = session.trigger(summary, source, dedup_key, severity)
+    response = session.trigger(summary, source, dedup_key, severity, payload, custom_details, images, links)
 elif eventType == "acknowledge":
     if dedup_key is None:
         exit("A dedup_key is required for event type acknowledge, but none was set")

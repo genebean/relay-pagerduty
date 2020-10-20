@@ -38,6 +38,12 @@ schemas:
       severity:
         type: string
         description: The severity of the event; one of 'info', 'warning', 'error', 'critical'
+      custom_details:
+        type: ojbect
+        description: A hash containg additonal key/value entries to display in the "Custom Details" section of a PagerDuty event
+      links:
+        type: array
+        description: An array containing links associated with the event
     required: [connection, type, dedup_key]
   outputs:
     $schema: 'http://json-schema.org/draft-07/schema#'
